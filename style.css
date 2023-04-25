@@ -1,0 +1,283 @@
+:root{
+    --Linear-gradient: hsl(249, 99%, 64%) to hsl(278, 94%, 30%); /* active input border */
+    --Red: hsl(0, 100%, 66%); /* input error */
+
+    --White: hsl(0, 0%, 100%);
+    --Light-grayish-violet: hsl(270, 3%, 87%);
+    --Dark-grayish-violet: hsl(279, 6%, 55%);
+    --Very-dark-violet: hsl(278, 68%, 11%);
+}
+
+            /* -----GENERAL----- */
+
+body, html{
+    font-family: Space Grotesk;
+    height: 100%;
+    margin: 0;
+}
+
+main{
+    height: 100%;
+    display: flex;
+}
+
+            /* -----CARDS SIDE----- */
+
+.cards-side{
+    background-image: url(./images/bg-main-desktop.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    width: 28rem;
+    margin-right: 5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Front Card */
+
+.front-card{
+    position: relative;
+    width: 17vw;
+    min-width: 12rem;
+    max-width: 15rem;
+    margin-left: 10rem;
+    padding-top: 10rem;
+    z-index: 99;
+}
+
+.front-card p{
+    color: var(--White);
+}
+
+.front-card-image{
+    height: 17vw;
+    min-height: 12rem;
+    max-height: 15rem;
+    position: relative;
+}
+
+.card-front-data{
+    position: absolute;
+    top: 11rem;
+    left: 1rem;
+    display: grid;
+    width: 140%;
+    height: 50%;
+    align-items: center;
+    grid-template-columns: 80% 20%;
+    grid-template-rows: 50% 25% 25%;
+}
+
+.front-card-logo{
+    height: 2.5rem;
+    grid-column: 1 / 3;
+    align-self: start;
+}
+
+.card-number{
+    grid-column: 1 / 3;
+    justify-self: center;
+    font-size: min(2vw, 1.1rem);
+    letter-spacing: .2rem;
+}
+
+/* Back Card */
+
+.back-card{
+    position: relative;
+    width: 20vw;
+    min-width: 15rem;
+    max-width: 18rem;
+    margin-left: 17rem;
+    padding-top: 2rem;
+}
+
+.back-card img{
+    height: 17vw;
+    min-height: 12rem;
+    max-height: 15rem;
+    position: relative;
+}
+
+.card-cvc{
+    position: relative;
+    bottom: 51%;
+    left: 115%;
+    width: 3rem;
+}
+
+            /* -----FORM SIDE----- */
+
+.form-side{
+    height: 100%;
+    width: 98%;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+}
+
+/* Main Form */
+
+.main-form{
+    padding-top: 10rem;
+    width: 40%;
+}
+
+.main-form form{
+    height: 100%;
+    width: 100%;
+    display: grid;
+    align-items: end;
+    grid-template-columns: 25% 25% 50%;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    column-gap: .5rem;
+    grid-template-areas: 
+    'card-name      card-name      card-name'
+    'name-input     name-input     name-input'
+    'card-number    card-number    card-number'
+    'number-input   number-input   number-input'
+    'expiration     expiration     cvc'
+    'month          year           cvc-input'
+    'confirm        confirm        confirm'
+    ;
+}
+
+.main-form form label{
+    text-transform: uppercase;
+    color: var(--Very-dark-violet);
+    font-size: .7rem;
+    letter-spacing: .1rem;
+    padding-top: 1rem;
+}
+
+.main-form form input[type='number'],
+.main-form form input[type='text']{
+    border: solid 1px var(--Light-grayish-violet);
+    border-radius: .4rem;
+    padding: .5rem;
+    height: 1.5rem;
+}
+
+.main-form form input[type='submit']{
+    color: var(--Light-grayish-violet);
+    background-color: var(--Very-dark-violet);
+    font-size: 1rem;
+    margin-top: 1rem;
+    height: 2rem;
+    border-radius: .4rem;
+    border: none;
+}
+
+/* Grid Areas */
+
+.lname{
+    grid-area: card-name;
+}
+
+.iname{
+    grid-area: name-input;
+}
+
+.lnumber{
+    grid-area: card-number;
+}
+
+.inumber{
+    grid-area: number-input;
+}
+
+.lexp{
+    grid-area: expiration;
+}
+
+.imonth{
+    grid-area: month;
+}
+
+.iyear{
+    grid-area: year;
+}
+
+.lcvc{
+    grid-area: cvc;
+}
+
+.icvc{
+    grid-area: cvc-input;
+}
+
+.submit-button{
+    grid-area: confirm;
+}
+
+            /* -----HIDDEN----- */
+
+.hidden{
+    display: none;
+}
+
+            /* -----MEDIA QUERYS----- */
+
+@media(max-width: 1108px){
+    html{
+        font-size: 11px;
+    }
+}
+
+@media(max-width: 924px){
+    html{
+        font-size: 7px;
+        overflow-x: hidden;
+    }
+}
+
+/* Mobile */
+
+@media(max-width: 645px){
+    html{
+        font-size: 16px;
+        overflow-x: auto;
+    }
+
+    main{
+        flex-direction: column;
+    }
+
+    .cards-side{
+        background-image: url(./images/bg-main-mobile.png);
+        height: 50%;
+        margin-right: 0;
+        width: 100%;
+        align-items: start;
+    }
+
+    .front-card{
+        margin-left: 1rem;
+        padding-top: 10rem;
+        min-width: 10rem;
+    }
+
+    .front-card-image{
+        height: 40vw;
+        min-height: 10rem;
+    }
+
+    .card-front-data{
+        top: 11rem;
+        left: 1rem;
+    }
+
+    .back-card{
+        position: relative;
+        margin-left: 7rem;
+        top: -22rem;
+    }
+    
+    .back-card img{
+        height: 40vw;
+        min-height: 10rem;
+        max-height: 15rem;
+        position: relative;
+    }
+}

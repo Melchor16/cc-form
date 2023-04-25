@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <link rel="stylesheet" href="./style.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500&display=swap" rel="stylesheet">
+  <title>Frontend Mentor | Interactive card details form</title>
+
+</head>
+<body>
+  <main>
+    <div class="cards-side">
+      <div class="front-card">
+        <img src="./images/bg-card-front.png" alt="Card" class="front-card-image">
+        <div class="card-front-data">
+          <img src="./images/card-logo.svg" alt="Logo" class="front-card-logo">
+          <p class="card-number">0000 0000 0000 0000</p>
+          <p class="card-name">Jane Appleseed</p>
+          <p class="card-date">00/00</p>
+        </div>
+      </div>
+      <div class="back-card">
+        <img src="./images/bg-card-back.png" alt="Card Back">
+        <p class="card-cvc">000</p>
+      </div>
+    </div>
+    <div class="form-side">
+      <div class="main-form">
+        <form action="sumbit">
+          <label for="form-name" class="lname">Cardholder name</label>
+          <input type="text" name="form-name" id="form-name" class="iname" placeholder="e.g.Jane Appleseed">
+          <label for="form-card-number" class="lnumber">Card number</label>
+          <input type="number" name="form-card-number" id="form-card-number" class="inumber" placeholder="e.g. 1234 5678 9123 000">
+          <label for="form-month" class="lexp">Exp. date (MM/YY)</label>
+          <input type="number" name="form-month" id="form-month" class="imonth" placeholder="MM">
+          <input type="number" name="form-year" id="form-year" class="iyear" placeholder="YY">
+          <label for="form-cvc" class="lcvc">CVC</label>
+          <input type="number" name="form-cvc" id="form-cvc" class="icvc" placeholder="e.g 123">
+          <input type="submit" name="form-submit" id="form-submit" class="submit-button" value="Confirm">
+        </form>
+      </div>
+      <div class="submit-message hidden">
+        <img src="./images/icon-complete.svg" alt="Successful">
+        <p class="ty">Thank you</p>
+        <p class="ty-text">We've added your card details</p>
+        <button id="continue">Continue</button>
+      </div>
+    </div>
+  </main>
+  
+  <footer class="attribution hidden">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="#">Your Name Here</a>.
+  </footer>
+</body>
+</html>
