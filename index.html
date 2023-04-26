@@ -18,40 +18,47 @@
         <img src="./images/bg-card-front.png" alt="Card" class="front-card-image">
         <div class="card-front-data">
           <img src="./images/card-logo.svg" alt="Logo" class="front-card-logo">
-          <p class="card-number">0000 0000 0000 0000</p>
-          <p class="card-name">Jane Appleseed</p>
-          <p class="card-date">00/00</p>
+          <p class="card-number" id="card-number">0000 0000 0000 0000</p>
+          <p class="card-name" id="card-name">Jane Appleseed</p>
+          <p class="card-month" id="card-month">00</p>
+          <p class="slash">/</p>
+          <p class="card-year" id="card-year">00</p>
         </div>
       </div>
       <div class="back-card">
         <img src="./images/bg-card-back.png" alt="Card Back">
-        <p class="card-cvc">000</p>
+        <p class="card-cvc" id="card-cvc">000</p>
       </div>
     </div>
     <div class="form-side">
-      <div class="main-form">
-        <form action="sumbit">
+      <div class="main-form " id="main-form">
+        <form action="sumbit" id="card-form">
           <label for="form-name" class="lname">Cardholder name</label>
-          <input type="text" name="form-name" id="form-name" class="iname" placeholder="e.g.Jane Appleseed">
+          <input type="text" name="form-name" id="form-name" class="iname" placeholder="e.g. Jane Appleseed">
+          <p class="error-name error-message hidden" id="error-name">Can't be blank</p>
           <label for="form-card-number" class="lnumber">Card number</label>
-          <input type="number" name="form-card-number" id="form-card-number" class="inumber" placeholder="e.g. 1234 5678 9123 000">
+          <input type="number" name="form-card-number" max="9999999999999999" id="form-card-number" class="inumber" placeholder="e.g. 1234 5678 9123 000">
+          <p class="error-number error-message hidden" id="error-number">Can't be blank</p>
           <label for="form-month" class="lexp">Exp. date (MM/YY)</label>
-          <input type="number" name="form-month" id="form-month" class="imonth" placeholder="MM">
-          <input type="number" name="form-year" id="form-year" class="iyear" placeholder="YY">
+          <input type="number" name="form-month" max="12" id="form-month" class="imonth" placeholder="MM">
+          <p class="error-month error-message hidden" id="error-month">Can't be blank</p>
+          <input type="number" name="form-year" min="23" max="99" id="form-year" class="iyear" placeholder="YY">
+          <p class="error-year error-message hidden" id="error-year">Can't be blank</p>
           <label for="form-cvc" class="lcvc">CVC</label>
-          <input type="number" name="form-cvc" id="form-cvc" class="icvc" placeholder="e.g 123">
+          <input type="number" name="form-cvc" max="999" id="form-cvc" class="icvc" placeholder="e.g 123">
+          <p class="error-cvc error-message hidden" id="error-cvc">Can't be blank</p>
           <input type="submit" name="form-submit" id="form-submit" class="submit-button" value="Confirm">
         </form>
       </div>
-      <div class="submit-message hidden">
+      <div class="submit-message hidden" id="submit-message">
         <img src="./images/icon-complete.svg" alt="Successful">
-        <p class="ty">Thank you</p>
+        <p class="ty">Thank you!</p>
         <p class="ty-text">We've added your card details</p>
         <button id="continue">Continue</button>
       </div>
     </div>
   </main>
-  
+  <script src="./index.js"></script>
   <footer class="attribution hidden">
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
     Coded by <a href="#">Your Name Here</a>.

@@ -8,6 +8,20 @@
     --Very-dark-violet: hsl(278, 68%, 11%);
 }
 
+/* HIDDING ARROWS IN NUMBER INPUTS */
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
             /* -----GENERAL----- */
 
 body, html{
@@ -65,21 +79,25 @@ main{
     width: 140%;
     height: 50%;
     align-items: center;
-    grid-template-columns: 80% 20%;
+    grid-template-columns: 80% 7% 7% 7%;
     grid-template-rows: 50% 25% 25%;
 }
 
 .front-card-logo{
     height: 2.5rem;
-    grid-column: 1 / 3;
+    grid-column: 1 / 5;
     align-self: start;
 }
 
 .card-number{
-    grid-column: 1 / 3;
+    grid-column: 1 / 5;
     justify-self: center;
     font-size: min(2vw, 1.1rem);
     letter-spacing: .2rem;
+}
+
+.slash{
+    justify-self: center;
 }
 
 /* Back Card */
@@ -135,10 +153,13 @@ main{
     grid-template-areas: 
     'card-name      card-name      card-name'
     'name-input     name-input     name-input'
+    'err-name       err-name        err-name'
     'card-number    card-number    card-number'
     'number-input   number-input   number-input'
+    'err-number     err-number     err-number'
     'expiration     expiration     cvc'
     'month          year           cvc-input'
+    'err-month      err-year       err-cvc'
     'confirm        confirm        confirm'
     ;
 }
@@ -153,10 +174,22 @@ main{
 
 .main-form form input[type='number'],
 .main-form form input[type='text']{
+    color: var(--Very-dark-violet);
+    font-family: Space Grotesk;
+    font-weight: 500;
     border: solid 1px var(--Light-grayish-violet);
     border-radius: .4rem;
     padding: .5rem;
     height: 1.5rem;
+}
+
+input:focus{
+    outline: none;
+    border-color: var(--Linear-gradient) !important;
+}
+
+input::placeholder{
+    font-family: Space Grotesk;
 }
 
 .main-form form input[type='submit']{
@@ -167,6 +200,21 @@ main{
     height: 2rem;
     border-radius: .4rem;
     border: none;
+}
+
+.main-form form input[type='submit']:hover{
+    color: var(--Light-grayish-violet);
+    background-color: hsl(278, 94%, 30%);
+    cursor: pointer;
+}
+
+.error-message{
+    color: red;
+    font-size: 1rem;
+}
+
+.error-input{
+    border-color: red !important;
 }
 
 /* Grid Areas */
@@ -207,8 +255,75 @@ main{
     grid-area: cvc-input;
 }
 
+.error-name{
+    grid-area: err-name;
+}
+
+.error-number{
+    grid-area: err-number;
+}
+
+.error-month{
+    grid-area: err-month;
+}
+
+.error-year{
+    grid-area: err-year;
+}
+
+.error-cvc{
+    grid-area: err-cvc;
+}
+
 .submit-button{
     grid-area: confirm;
+}
+
+            /* -----THANK YOU STATE----- */
+
+.submit-message{
+    margin-top: 10rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.submit-message img{
+    width: 12rem;
+    height: auto;
+}
+
+.ty{
+    color: var(--Very-dark-violet);
+    font-size: 3.5rem;
+    text-transform: uppercase;
+    letter-spacing: .2rem;
+    margin: 0;
+    padding-top: 4rem;
+}
+
+.ty-text{
+    color: var(--Dark-grayish-violet);
+    font-size: 2rem;
+    margin: 0;
+    padding-top: 1rem;
+}
+
+.submit-message button{
+    width: 100%;
+    background-color: var(--Very-dark-violet);
+    color: white;
+    border: none;
+    border-radius: 1rem;
+    padding: 1rem;
+    margin-top: 4rem;
+}
+
+.submit-message button:hover{
+    width: 100%;
+    background-color: hsl(278, 94%, 30%);
+    cursor: pointer;
 }
 
             /* -----HIDDEN----- */
@@ -236,7 +351,7 @@ main{
 
 @media(max-width: 645px){
     html{
-        font-size: 16px;
+        font-size: 13px;
         overflow-x: auto;
     }
 
