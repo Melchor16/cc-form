@@ -24,16 +24,17 @@ const $form_state = d.getElementById('main-form'),
 $submit_state = d.getElementById('submit-message'),
 $continue = d.getElementById('continue');
 //other variables
-let proceed = false;
+let proceed = false,
+proceed_count = 0;
 
 //Fucntions--------------------------------------------------------------------
 
 function blankError(input){
     input.name === 'form-name' ? $error_name.innerHTML="Can't be blank"
     : input.name === 'form-card-number' ? $error_number.innerHTML="Can't be blank"
-    : input.name === 'form-month' ? $error_month.classList.innerHTML="Can't be blank"
-    : input.name === 'form-year' ? $error_year.classList.innerHTML="Can't be blank"
-    : input.name === 'form-cvc' ? $error_cvc.classList.innerHTML="Can't be blank" : null;
+    : input.name === 'form-month' ? $error_month.innerHTML="Can't be blank"
+    : input.name === 'form-year' ? $error_year.innerHTML="Can't be blank"
+    : input.name === 'form-cvc' ? $error_cvc.innerHTML="Can't be blank" : null;
 
     input.name === 'form-name' ? $error_name.classList.remove('hidden')
     : input.name === 'form-card-number' ? $error_number.classList.remove('hidden')
@@ -44,7 +45,7 @@ function blankError(input){
     input.type != 'submit' ? input.classList.add('error-input'): null;
 }
 
-function blankErrorOff(input){
+function ErrorOff(input){
 
     input.name === 'form-name' ? $error_name.classList.add('hidden') : null;
     input.name === 'form-card-number' ? $error_number.classList.add('hidden') : null;
@@ -55,22 +56,32 @@ function blankErrorOff(input){
     input.type != 'submit' ? input.classList.remove('error-input'): null;
 }
 
-function inputSelector(input){
-    let output = 0;
-    input.name === 'form-name' ? output = $name_input
-    : input.name === 'form-card-number' ? output = $number_input
-    : input.name === 'form-month' ? output = $month_input
-    : input.name === 'form-year' ? output = $year_input
-    : input.name === 'form-cvc' ? output = $cvc_input : null;
-
-    return output;
+function validityError(input){
+    if(input.name === 'form-card-number' && input.value.length > 16){
+        $error_number.innerHTML="Please use a valid format";
+        $error_number.classList.remove('hidden');
+        proceed_count += 1;
+    }else if(input.name === 'form-month' && (input.value > 12 || input.value < 1)){
+        $error_month.innerHTML="Please use a valid month";
+        $error_month.classList.remove('hidden');
+        proceed_count += 1;
+    }else if(input.name === 'form-year' && (input.value < 23 || input.value > 99)){
+        $error_year.innerHTML="Please use a valid year";
+        $error_year.classList.remove('hidden');
+        proceed_count += 1;
+    }else if(input.name === 'form-cvc' && (input.value > 999 || input.value < 100)){
+        $error_cvc.innerHTML="Please use a valid format";
+        $error_cvc.classList.remove('hidden');
+        proceed_count += 1;
+    }else{
+        ErrorOff(input);
+    }
 }
 
 //Main program-----------------------------------------------------------------
 
 
-for(let ins of $inputs){
-    ins.setCustomValidity('')
+for(let ins of $inputs){    //write values on cards
     ins.addEventListener('input', e=>{
         ins.name === 'form-name' ? $card_name.innerHTML=ins.value : null;
         ins.name === 'form-card-number' ? $card_number.innerHTML=ins.value : null;
@@ -78,13 +89,9 @@ for(let ins of $inputs){
         ins.name === 'form-year' ? $card_year.innerHTML=ins.value : null;
         ins.name === 'form-cvc' ? $card_cvc.innerHTML=ins.value : null;
     })
-
-    ins.addEventListener('invalid', e=>{
-        ins.setCustomValidity('Please use a valid format');
-    })
 }
 
-$main_form.addEventListener('submit', e =>{
+$main_form.addEventListener('submit', e =>{ //validations
     e.preventDefault();
     proceed_count = 0
     for(let inp of $inputs){
@@ -92,7 +99,8 @@ $main_form.addEventListener('submit', e =>{
             blankError(inp);
             proceed_count += 1;
         }else{
-            blankErrorOff(inp)
+            ErrorOff(inp);
+            validityError(inp);
         }
     }
     proceed_count ? proceed = false : proceed = true
@@ -105,7 +113,7 @@ $main_form.addEventListener('submit', e =>{
 
 //Thank you state button ------------------------------------------------------------
 
-$continue.addEventListener('click', e =>{
+$continue.addEventListener('click', e =>{   //reset the values when you click continue
     for(let i of $inputs){
         i.type != 'submit' ? i.value ='': null;
     }
